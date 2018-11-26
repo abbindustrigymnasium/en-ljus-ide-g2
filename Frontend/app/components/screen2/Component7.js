@@ -3,6 +3,7 @@ import {
 	StyleSheet,
 	View,
 	Text,
+	TouchableOpacity,
 } from 'react-native';
 
 
@@ -30,32 +31,16 @@ export default class Component7 extends React.Component {
 
                 			<View style={styles.itemcontainer1Inner}>
 
-                                <View style={styles.item1}>
-										<Text 
-											style={styles.item1Text}
-										>
+                                <TouchableOpacity 
+										style={styles.item1}
+										onPress={() => this.props.navigation.navigate('Screen3', {})}
+									>
+									
+										<Text style={styles.item1TouchableOpacity}>
 											
 										</Text>
-									</View>
-
-                			</View>
-
-                		</View>
-
-                	</View>
-                	<View style={styles.layout2}>
-
-                		<View style={styles.itemcontainer2}>
-
-                			<View style={styles.itemcontainer2Inner}>
-
-                                <View style={styles.item2}>
-										<Text 
-											style={styles.item2Text}
-										>
-											
-										</Text>
-									</View>
+									
+									</TouchableOpacity>
 
                 			</View>
 

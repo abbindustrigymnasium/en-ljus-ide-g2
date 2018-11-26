@@ -4,7 +4,6 @@ import {
 	View,
 	Text,
 	TouchableOpacity,
-	TouchableWithoutFeedback,
 } from 'react-native';
 
 
@@ -34,6 +33,7 @@ export default class Component2 extends React.Component {
 
                                 <TouchableOpacity 
 										style={styles.item1}
+										onPress={() => this.props.navigation.navigate('Screen3', {})}
 									>
 										
 										<Text style={styles.item1TouchableOpacity}>
@@ -54,15 +54,7 @@ export default class Component2 extends React.Component {
                 			<View style={styles.itemcontainer2Inner}>
 
                                 <View style={styles.item2}>
-										<TouchableWithoutFeedback 
-										>
-											<View>
-												<Text style={styles.item2TouchableWithoutFeedback}>
-													
-												</Text>
-											</View>
-									
-										</TouchableWithoutFeedback>
+										
 									</View>
 
                 			</View>

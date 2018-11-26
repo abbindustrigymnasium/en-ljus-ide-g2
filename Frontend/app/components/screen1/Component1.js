@@ -33,8 +33,9 @@ export default class Component1 extends React.Component {
 
                                 <TouchableOpacity 
 										style={styles.item1}
+										onPress={() => this.props.navigation.navigate('Screen2', {})}
 									>
-										
+									
 										<Text style={styles.item1TouchableOpacity}>
 											
 										</Text>
