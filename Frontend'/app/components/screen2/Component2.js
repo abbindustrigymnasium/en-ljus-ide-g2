@@ -1,10 +1,9 @@
 import React from "react";
-import Slider from "react-native-slider"; // 0.11.0
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View, Text, Slider } from "react-native";
 
 export default class Component2 extends React.Component {
   state = {
-    value: 0.2
+    value:1024
   };
 
   render() {
