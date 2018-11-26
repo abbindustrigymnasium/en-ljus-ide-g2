@@ -4,7 +4,7 @@ router.delete('/:lightName', (req, res, next) => {
     var deleteRows = function(){
         return new Promise(function(resolve, reject){
             const lightName = req.params.lightName;
-            connection.query('DELETE FROM light WHERE lightName = ?',[lightName], function (error, results) {
+            connection.query('DELETE FROM light WHERE lghtName = ?',[lightName], function (error, results) {
                 console.log(error);
                 if (error)
                 return reject(error);
