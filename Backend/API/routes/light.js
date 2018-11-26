@@ -3,20 +3,20 @@ const router = express.Router();
 
 var mysql      = require('mysql');
 var con = mysql.createConnection({
-  host     : 'localhost',
-  user     : 'ljuside2',
-  password : 'lokförarkatt',
-  database : 'ljuside2'
+    host     : 'localhost',
+    user     : 'ljuside2',
+    password : 'lokförarkatt',
+    database : 'ljuside2'
 }); 
 con.connect(function(err){
     if (err)
         throw err;
 });
 
-  var Values_FromDB;  
-  var cron = require('node-cron');
+    var Values_FromDB;  
+    var cron = require('node-cron');
 
-  cron.schedule('*/10 * * * * *', () => {
+    cron.schedule('*/10 * * * * *', () => {
   
     var GetLight = function(){
       return new Promise(function(resolve,reject){
@@ -30,27 +30,27 @@ con.connect(function(err){
             });
       });
   }
-  GetLight().then( result => {
-    Values_FromDB= result; 
-    console.log("...")
+    GetLight().then( result => {
+      Values_FromDB= result; 
+      console.log("...")
   
     
   
     
+    });
 });
-  });
 
 
 
 
   
-
-  router.get('/', (req, res) => {
+ 
+    router.get('/', (req, res) => {
         res.status(200).json({
             messege: 'Getter', 
-            result: Values_FromDB});
-
-      });
+            result: Values_FromDB
+        });
+    });
 
 
   

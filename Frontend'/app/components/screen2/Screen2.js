@@ -5,7 +5,8 @@ import {
 } from 'react-native';
 
 import Component7 from './Component7';
-import Component2 from './Component2';
+import Component9 from './Component9';
+import Component10 from './Component10';
 
 export default class Screen2 extends React.Component {
 
@@ -15,7 +16,8 @@ export default class Screen2 extends React.Component {
 
         this.state = {
             Component7Visible: true,
-            Component2Visible: true,
+            Component9Visible: true,
+            Component10Visible: true,
         }
 
     }
@@ -89,12 +91,19 @@ export default class Screen2 extends React.Component {
                             showComponent={ (component) => this.showComponent(component) }
                             visible={ this.state.Component7Visible }
                         />
-                        <Component2 
+                        <Component9 
                             navigation={this.props.navigation}
                             toggleComponent={ (component) => this.toggleComponent(component) }
                             hideComponent={ (component) => this.hideComponent(component) }
                             showComponent={ (component) => this.showComponent(component) }
-                            visible={ this.state.Component2Visible }
+                            visible={ this.state.Component9Visible }
+                        />
+                        <Component10 
+                            navigation={this.props.navigation}
+                            toggleComponent={ (component) => this.toggleComponent(component) }
+                            hideComponent={ (component) => this.hideComponent(component) }
+                            showComponent={ (component) => this.showComponent(component) }
+                            visible={ this.state.Component10Visible }
                         />
 
                     </View>

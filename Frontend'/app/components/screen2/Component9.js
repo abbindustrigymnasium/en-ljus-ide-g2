@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 
 
-export default class Component2 extends React.Component {
+export default class Component9 extends React.Component {
 
 
     render() {
@@ -33,7 +33,6 @@ export default class Component2 extends React.Component {
 
                                 <TouchableOpacity 
 										style={styles.item1}
-										onPress={() => this.props.navigation.navigate('Screen3', {})}
 									>
 										
 										<Text style={styles.item1TouchableOpacity}>
@@ -41,21 +40,6 @@ export default class Component2 extends React.Component {
 										</Text>
 									
 									</TouchableOpacity>
-
-                			</View>
-
-                		</View>
-
-                	</View>
-                	<View style={styles.layout2}>
-
-                		<View style={styles.itemcontainer2}>
-
-                			<View style={styles.itemcontainer2Inner}>
-
-                                <View style={styles.item2}>
-										
-									</View>
 
                 			</View>
 
@@ -90,8 +74,8 @@ const styles = StyleSheet.create({
 	},
 	
 	layout1: {
-	    width: '50%',
-	    height: 109.5,
+	    width: '100%',
+	    height: 90,
 	},
 	
 	itemcontainer1: {
@@ -126,49 +110,6 @@ const styles = StyleSheet.create({
 	},
 	
 	item1TouchableOpacity: {
-	    color: '#fff',
-	    fontSize: 14,
-	    textAlign: 'center',
-	    width: '100%',
-	},
-	
-	layout2: {
-	    width: '50%',
-	    height: 115.5,
-	},
-	
-	itemcontainer2: {
-	    width: '100%',
-	    height: '100%',
-	    paddingTop: 7.5,
-	    paddingBottom: 7.5,
-	    paddingLeft: 7.5,
-	    paddingRight: 7.5,
-	},
-	
-	itemcontainer2Inner: {
-	    width: '100%',
-	    height: '100%',
-	    position: 'relative',
-	    alignItems: 'center',
-	    justifyContent: 'center',
-	},
-	
-	item2: {
-	    backgroundColor: '#1194f6',
-	    borderWidth: 0,
-	    borderColor: '#eee',
-	    borderStyle: 'solid',
-	    borderRadius: 4,
-	    width: '100%',
-	    height: '100%',
-	    justifyContent: 'center',
-	    alignItems: 'center',
-	    overflow: 'hidden',
-	    padding: 10,
-	},
-	
-	item2TouchableWithoutFeedback: {
 	    color: '#fff',
 	    fontSize: 14,
 	    textAlign: 'center',

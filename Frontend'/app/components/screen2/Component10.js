@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 
 
-export default class Component1 extends React.Component {
+export default class Component10 extends React.Component {
 
 
     render() {
@@ -33,9 +33,9 @@ export default class Component1 extends React.Component {
 
                                 <TouchableOpacity 
 										style={styles.item1}
-										onPress={() => this.props.navigation.navigate('Screen2', {})}
+										onPress={() => this.props.navigation.navigate('Screen3', {})}
 									>
-									
+										
 										<Text style={styles.item1TouchableOpacity}>
 											
 										</Text>
