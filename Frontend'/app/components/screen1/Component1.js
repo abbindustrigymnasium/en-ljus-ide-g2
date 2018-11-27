@@ -14,18 +14,18 @@ constructor(props)
 
 	super(props)
 	this.state= {
-		lightName: '',
-		Strength: ''	
+		lightName: 'Cold',
+		Strength: '512'	
 	}
 }
 
 InsertDataToServer =() => {
 
-	const {lightName} = this.state;
+	var {lightName} = this.state.lightName;
 	const {Str} = this.state;
 
 		if (lightName='') { //Om lampan är släckt. (Lampan är alltid släckt i den första skärmen, screen1.)
-		fetch('http://192.168.0.104:3001/light/'+lightName,{ //Bestämmer vart det nya värdet hamnar.
+		fetch('http://192.168.0.117:3001/light/',{ //Bestämmer vart det nya värdet hamnar.
 			method: 'POST', //Bestämmer att ett nytt värde skapas.
 			headers: {
 				'Accept': 'application/json',
@@ -69,7 +69,8 @@ InsertDataToServer =() => {
 
                                 <TouchableOpacity 
 										style={styles.item1}
-										onPress={() => this.props.navigation.navigate('Screen2', {})} //Om man trycker på knappen kommer man till den andra skärmen där man kan ändra ljusets värme och ljusstryka.
+										onPress={() => this.props.navigation.navigate('Screen2', {}) }  
+										 //Om man trycker på knappen kommer man till den andra skärmen där man kan ändra ljusets värme och ljusstryka.
 									>
 										
 										<Text style={styles.item1TouchableOpacity}>

@@ -9,6 +9,50 @@ import {
 
 export default class Component9 extends React.Component {
 
+	constructor(props)
+{
+
+super(props);
+this.state= {
+	lightName: "",
+	Str: ''
+    
+}
+}
+
+DeleteDataFromServer = () =>{ //Skapar en metod som tar värdena name och price så använder vi dem för att skicka till databasen
+	var lightName= this.state.lightName ;
+	const { Str }  = this.state ;
+	
+  if(lightName!="") //Tittar så namnet inte är tomt
+  {
+   fetch('http://192.168.0.117:3001/light/'+'*', {  //Skickar värdena till databasen 
+   method: 'DELETE * ',	 //Post betyder skicka
+	 headers: { // skickar med vilkoren 
+	 'Accept': 'application/json', 
+	 'Content-Type': 'application/json',
+	 }
+	
+	
+   }).then((response) => response.json())  //gör om den till json
+		 .then((responseJson) => {
+	
+ // Showing response message coming from server after inserting records.
+ 
+ console.log(responseJson); //Ser hela meddelandet från server
+	   alert('Delete '); //Skriver vilken produkt som blivit tillagd
+	
+		 }).catch((error) => { //Fångar fel
+		   console.error(error);
+		 });
+		  
+   }
+   else
+   alert("Write a lightName and a Strength.") //Om det är tomt skrivs en rekomendation ut
+	
+	 }
+	
+
 
     render() {
 
@@ -34,10 +78,11 @@ export default class Component9 extends React.Component {
                                 <TouchableOpacity 
 										style={styles.item1}
 										onPress={() => this.props.navigation.navigate('Screen1', {})}
+										onPress={this.DeleteDataFromServer}
 									>
 										
 										<Text style={styles.item1TouchableOpacity}>
-											
+											Off
 										</Text>
 									
 									</TouchableOpacity>
