@@ -35,9 +35,9 @@ InsertDataToServer =() => {
 				lightName: lightName, //Bestämmer att lightName ska heta lightName på http://192.168.0.104:3001/light.
 				Str: Strength ////Bestämmer det ska stå Strength istället för Str på http://192.168.0.104:3001/light.
 			})
-		}).then((response) => response.json()).then(responseJSON => { //Gär om responsen till json-format.
+		}).then((response) => response.json()).then(responseJSON => { //Gör om responsen till json-format.
 
-			console.log(responseJSON); //GÖr så att vi ser om värdet har skickats.
+			console.log(responseJSON); //Gör så att vi ser om värdet har skickats.
 			alert(responseJSON.message+'	'+ lightName); //Visar om det gick att skicka det nya värdet.
 
 		}).catch((error)=>{
