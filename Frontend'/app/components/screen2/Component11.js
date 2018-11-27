@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, View, Text, Slider } from "react-native";
 
-export default class Component2 extends React.Component {
+export default class Component11 extends React.Component {
   state = {
     value:15
     
@@ -18,7 +18,7 @@ export default class Component2 extends React.Component {
           step={1}
         />
         <Text>
-          Styrka: {this.state.value + "%"}
+          Tempratur: {this.state.value + "%"}
         </Text>
       </View>
     );
@@ -32,6 +32,7 @@ const styles = StyleSheet.create({
     marginRight: 10,
     marginTop:10,
     alignItems: "stretch",
-    justifyContent: "center"
+    justifyContent: "center",
+    paddingTop: 7.5,
   }
 });
