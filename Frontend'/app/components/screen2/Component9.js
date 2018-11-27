@@ -27,7 +27,7 @@ DeleteDataFromServer = () =>{ //Skapar en metod som tar värdena name och price 
   if(lightName!="") //Tittar så namnet inte är tomt
   {
    fetch('http://192.168.0.117:3001/light/', {  //Skickar värdena till databasen 
-   method: 'DELETE ',	 //Post betyder skicka
+   method: 'DELETE  * FROM light ',	 //Post betyder skicka
 	 headers: { // skickar med vilkoren 
 	 'Accept': 'application/json', 
 	 'Content-Type': 'application/json',
@@ -40,7 +40,7 @@ DeleteDataFromServer = () =>{ //Skapar en metod som tar värdena name och price 
  // Showing response message coming from server after inserting records.
  
  console.log(responseJson); //Ser hela meddelandet från server
-	   alert('Delete '); //Skriver vilken produkt som blivit tillagd
+	   alert('Delete'); //Skriver vilken produkt som blivit tillagd
 	
 		 }).catch((error) => { //Fångar fel
 		   console.error(error);
@@ -62,6 +62,7 @@ DeleteDataFromServer = () =>{ //Skapar en metod som tar värdena name och price 
 	}
 	componentWillUnmount()
 	{
+		console.log("hej!");
 		this.DeleteDataFromServer ();	
 	}
 	functionCombined() {
