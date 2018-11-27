@@ -14,8 +14,8 @@ constructor(props)
 
 	super(props)
 	this.state= {
-		lightName: 'Cold',
-		Strength: '512'	
+		lightName: '',
+		Str: ''	
 	}
 }
 
@@ -46,6 +46,19 @@ InsertDataToServer =() => {
 		}
 }
 
+functionOne() {
+	this.props.navigation.navigate('Screen2', {})
+	
+}
+functionTwo() {
+	this.InsertDataToServer 
+
+}
+functionCombined() {
+	this.functionOne();
+		this.functionTwo();
+		}
+
     render() {
 
         if (!this.props.visible) {
@@ -69,12 +82,12 @@ InsertDataToServer =() => {
 
                                 <TouchableOpacity 
 										style={styles.item1}
-										onPress={() => this.props.navigation.navigate('Screen2', {}) }  
+										onPress={() => this.functionCombined()} 
 										 //Om man trycker på knappen kommer man till den andra skärmen där man kan ändra ljusets värme och ljusstryka.
 									>
 										
 										<Text style={styles.item1TouchableOpacity}>
-											
+											On
 										</Text>
 									
 									</TouchableOpacity>
