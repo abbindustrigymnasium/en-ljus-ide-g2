@@ -33,7 +33,7 @@ InsertDataToServer =() => {
 			},
 			body: JSON.stringify({ //Gör om det som skickas till json-format.
 				lightName: lightName, //Bestämmer att lightName ska heta lightName på http://192.168.0.104:3001/light.
-				Str: Strength ////Bestämmer det ska stå Strength istället för Str på http://192.168.0.104:3001/light.
+				Str: 512 ////Bestämmer att ljusstyrkan ska ha värdet 512 när man tänder lampan.
 			})
 		}).then((response) => response.json()).then(responseJSON => { //Gör om responsen till json-format.
 
@@ -51,7 +51,7 @@ functionOne() {
 	
 }
 functionTwo() {
-	this.InsertDataToServer 
+	this.InsertDataToServer
 
 }
 functionCombined() {
@@ -82,12 +82,12 @@ functionCombined() {
 
                                 <TouchableOpacity 
 										style={styles.item1}
-										onPress={() => this.functionCombined()} 
-										 //Om man trycker på knappen kommer man till den andra skärmen där man kan ändra ljusets värme och ljusstryka.
+										onPress={() => this.functionCombined()}
+										//Om man trycker på knappen kommer man till den andra skärmen där man kan ändra ljusets värme och ljusstryka. Samtidigt skapas ett nytt värde med 50% ljusstyrka.
 									>
 										
 										<Text style={styles.item1TouchableOpacity}>
-											On
+										
 										</Text>
 									
 									</TouchableOpacity>
