@@ -34,7 +34,7 @@ export default class Component8 extends React.Component {
 										<Text 
 											style={styles.item1Text}
 										>
-											sensor sak
+											Sensor
 										</Text>
 									</View>
 
@@ -50,7 +50,7 @@ export default class Component8 extends React.Component {
             
         );
 
-    }
+	}
 
 }
 
@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
 	
 	item1Text: {
 	    color: '#181818',
-	    fontSize: 14,
+	    fontSize: 25,
 	    textAlign: 'center',
 	    width: '100%',
 	},
