@@ -3,7 +3,7 @@ const router = express.Router();
 
 var mysql      = require('mysql');
 var con = mysql.createConnection({
-    host     : 'localhost',
+    host     : 'http://iot.abbindustrigymnasium.se',
     user     : 'ljuside2',
     password : 'lokförarkatt',
     database : 'ljuside2'
@@ -54,7 +54,7 @@ con.connect(function(err){
 
 
   
-  router.get('/:lightname', (req, res) => {
+  router.get('/:lightName', (req, res) => {
     var found=false;
     var Outputvalue;
     Values_FromDB.forEach(element => {
