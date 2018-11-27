@@ -3,23 +3,38 @@ import { StyleSheet, View, Text, Slider } from "react-native";
 
 export default class Component11 extends React.Component {
   state = {
-    value:15
+    value:15,
+    value2:15
     
   };
 
   render() {
     return (
-      <View style={styles.container}>
-        <Slider
-          value={this.state.value}
-          onValueChange={value => this.setState({ value })}
-          maximumValue={100}
-          minimumValue={15} 
-          step={1}
-        />
-        <Text>
-          Tempratur: {this.state.value + "%"}
-        </Text>
+      <View style = {styles.container}>
+        <View>
+          <Slider
+            value={this.state.value}
+            onValueChange={value => this.setState({ value })}
+            maximumValue={100}
+            minimumValue={15} 
+            step={1}
+          />
+          <Text style = {styles.blue}>
+            Cold: {this.state.value + "%"}
+          </Text>
+        </View>
+        <View>
+          <Slider style = {styles.slider2}
+            value={this.state.value2}
+            onValueChange={value2 => this.setState({ value2 })}
+            maximumValue={100}
+            minimumValue={15} 
+            step={1}
+          />
+          <Text style = {styles.red}>
+            Warm: {this.state.value2 + "%"}
+          </Text>
+        </View>
       </View>
     );
   }
@@ -34,5 +49,17 @@ const styles = StyleSheet.create({
     alignItems: "stretch",
     justifyContent: "center",
     paddingTop: 7.5,
+    transform: [{rotate: '270deg'}]
+  },
+  blue: {
+    color: 'lightblue',
+    transform: [{rotate: '90deg'}]
+  },
+  red: {
+    color: 'orangered',
+    transform: [{rotate: '90deg'}]
+  },
+  slider2: {
+    
   }
 });
