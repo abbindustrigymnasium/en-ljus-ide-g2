@@ -76,21 +76,16 @@ con.connect(function(err){
 });
 
 router.post('/', (req, res, next) => {
-    const light = {
-        lightName: req.body.lightName,
-        Str: req.body.Str
-    };
+   
 
     var Createdlight= function(){
         return new Promise(function(resolve,reject){
 
-            var Thelight= [light.lightName,light.Str];
-            console.log(Thelight);
-            con.query('INSERT INTO light (lightName, Str) VALUES ?',[[Thelight]], function (error, results) {
+            con.query('INSERT INTO `light` (`lightName`, `Str`) VALUES ("Warm", 512), ("Cold", 512); ', function (error, results) {
                 if (error)
                 return reject (error);
                 else
-                return resolve(Thelight)
+                return resolve(results)
               });
         })
     }
@@ -109,13 +104,13 @@ router.post('/', (req, res, next) => {
     
     });
 
-    router.delete('/:lightName', (req, res, next) => {
+    router.delete('/', (req, res, next) => {
    
         console.log(req.params.lightName);
         var deleteRows = function(){
             return new Promise(function(resolve, reject){
                 const lightName = req.params.lightName;
-                con.query('DELETE FROM light WHERE lightName = ?',[lightName], function (error, results) {
+                con.query('DELETE FROM light',[lightName], function (error, results) {
                     console.log(error);
                     if (error)
                     return reject(error);

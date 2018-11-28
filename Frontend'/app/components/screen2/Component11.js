@@ -3,8 +3,8 @@ import { StyleSheet, View, Text, Slider } from "react-native";
 
 export default class Component11 extends React.Component {
   state = {
-    value:15,
-    value2:15
+    value:50,
+    value2:50,
     
   };
 
@@ -17,6 +17,12 @@ export default class Component11 extends React.Component {
             onValueChange={value => this.setState({ value })}
             maximumValue={100}
             minimumValue={15}
+            minimumTrackTintColor='rgb(0, 130, 255)'
+            step={1}
+            value={this.state.value}
+            onValueChange={value4 => this.setState({ value4 })}
+            maximumValue={1024}
+            minimumValue={154} 
             minimumTrackTintColor='rgb(0, 130, 255)'
             step={1}
           />
@@ -32,9 +38,16 @@ export default class Component11 extends React.Component {
             minimumValue={15} 
             minimumTrackTintColor='rgb(255, 130, 0)'
             step={1}
+            value={this.state.value2}
+            onValueChange={value3 => this.setState({ value3 })}
+            maximumValue={1024}
+            minimumValue={154} 
+            minimumTrackTintColor='rgb(255, 130, 0)'
+            step={1}
           />
           <Text style = {styles.red}>
             Warm: {this.state.value2 + "%"}
+           
           </Text>
         </View>
       </View>
