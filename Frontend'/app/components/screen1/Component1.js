@@ -31,10 +31,14 @@ InsertDataToServer =() => {
 				'Accept': 'application/json',
 				'Content-Type': 'application/json',
 			},
-			body: JSON.stringify({ //Gör om det som skickas till json-format.
-				lightName: lightName, //Bestämmer att lightName ska heta lightName på http://192.168.0.104:3001/light.
-				Str: 512 ////Bestämmer att ljusstyrkan ska ha värdet 512 när man tänder lampan.
+			
+			body: JSON.stringify({  //Gör om det som skickas till json-format.
+				lightName: Warm, //Bestämmer att lightName ska heta lightName på http://192.168.0.104:3001/light.
+				Str: 5556 ////Bestämmer att ljusstyrkan ska ha värdet 512 när man tänder lampan.
+				
 			})
+
+			
 		}).then((response) => response.json()).then(responseJSON => { //Gör om responsen till json-format.
 
 			console.log(responseJSON); //Gör så att vi ser om värdet har skickats.

@@ -3,14 +3,14 @@ const router = express.Router();
 
 var mysql      = require('mysql');
 var con = mysql.createConnection({
-    host     : 'http://iot.abbindustrigymnasium.se',
+    host     : 'iot.abbindustrigymnasium.se',
     user     : 'ljuside2',
     password : 'lokförarkatt',
     database : 'ljuside2'
 }); 
 con.connect(function(err){
-    if (err)
-        throw err;
+    if (err) 
+    throw err;
 });
 
     var Values_FromDB;  
@@ -115,7 +115,7 @@ router.post('/', (req, res, next) => {
         var deleteRows = function(){
             return new Promise(function(resolve, reject){
                 const lightName = req.params.lightName;
-                connection.query('DELETE FROM light WHERE lightName = ?',[lightName], function (error, results) {
+                con.query('DELETE FROM light WHERE lightName = ?',[lightName], function (error, results) {
                     console.log(error);
                     if (error)
                     return reject(error);
