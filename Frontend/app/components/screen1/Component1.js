@@ -43,8 +43,12 @@ InsertDataToServer =() => {
 		}
 
 functionOne() {
+ //HEAD
 	console.log("1")
 	this.props.navigation.navigate('Screen2', {})
+
+	this.props.navigation.navigate('Screen2', {}) //Gör att man kommer till den adra skärmen när man tänder lampan.
+
 	
 }
 functionTwo() {
@@ -52,7 +56,7 @@ functionTwo() {
 	this.InsertDataToServer();
 
 }
-functionCombined() {
+functionCombined() { //Sätter ihop funktionerna this.functionOne och this.functionTwo.
 	this.functionOne();
 		this.functionTwo();
 		}

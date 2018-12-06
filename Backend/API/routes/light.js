@@ -135,4 +135,34 @@ router.post('/', (req, res, next) => {
           })
         });
     });
+
+
+    router.patch('/:lightName', (req, res) => {
+        
+    
+        var updateValue = function(){
+            return new Promise(function(resolve, reject){
+                con.query('UPDATE `light` SET `Str` = ? ', function (error, results) {
+                    if (error)
+                    return reject(error);
+                    else
+                    return resolve(results)
+                });
+            })
+        }
+        updateValue().then(result => {
+            if (result.affectedRows > 0)
+                res.status(200).json(result);   
+            else
+                res.status(404).json({
+                message: "Not found"
+            });
+    
+    } ).catch(error => {
+            res.status(500).json({
+               error: error
+          })
+        });
+    });
+
     module.exports = router;
