@@ -139,12 +139,19 @@ router.post('/', (req, res, next) => {
 
     router.patch('/:lightName', (req, res) => {
         
+        const light = {
+            lightName: req.body.lightName,
+            Str: req.body.Str
+        }
+        
     
         var updateValue = function(){
             return new Promise(function(resolve, reject){
-                con.query('UPDATE `light` SET `Str` = ? ', function (error, results) {
+                con.query('UPDATE `light` SET `Str` = ? WHERE `lightName` = ?' , [light.Str, light.lightName], function (error, results) {
                     if (error)
-                    return reject(error);
+
+                    return reject(error)
+                    
                     else
                     return resolve(results)
                 });
@@ -153,16 +160,28 @@ router.post('/', (req, res, next) => {
         updateValue().then(result => {
             if (result.affectedRows > 0)
                 res.status(200).json(result);   
+
             else
                 res.status(404).json({
                 message: "Not found"
             });
     
     } ).catch(error => {
+        console.log(error)
             res.status(500).json({
                error: error
           })
         });
     });
+
+    
+
+
+
+
+
+    
+
+    
 
     module.exports = router;

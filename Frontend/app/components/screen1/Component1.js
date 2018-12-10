@@ -19,13 +19,41 @@ constructor(props)
 	}
 }
 
+componentDidMount() { //Körs när allt är inladdat
+    let self = this; //Kallar this för self för att lättare använda
+
+      fetch('http://192.168.0.112:3001/light/Str', {  //Urlen där vi vill skicka ifrån (Detta är datorns ipadress, hämtas via ipconfig i cmd, ip4)
+        method: 'GET'  //Säger att det är GET vi vill använda
+      }).then((response) => response.json())  //Gör om resultatet till json
+      .then((responseJson) => {
+         // console.log(responseJson, 'res');
+         // self.setState({ products: Object.assign(responseJson.result, products)  });
+       
+         var Str = responseJson.result; //Sätter result som en variabel
+          if (responseJson.message == "Getter") { //Om response.message är Getter
+            if (responseJson.result.length!=0) {
+   self.setState( //Sätter värden till statevariablen
+        {
+         
+           Str: responseJson.Str , //TAr första produkten i listans namn
+           
+          
+        
+    }
+)
+			}
+		}
+	});
+}
+
+
 InsertDataToServer =() => {
 
 	//var {lightName} = this.state.lightName;
 	//const {Str} = this.state;
 
 		console.log("äöäöl");
-		fetch('http://192.168.0.124:3001/light/',{ //Bestämmer vart det nya värdet hamnar.
+		fetch('http://192.168.0.112:3001/light/',{ //Bestämmer vart det nya värdet hamnar.
 			method: 'POST', //Bestämmer att ett nytt värde skapas.
 			headers: {
 				'Accept': 'application/json',
@@ -43,9 +71,8 @@ InsertDataToServer =() => {
 		}
 
 functionOne() {
- //HEAD
+
 	console.log("1")
-	this.props.navigation.navigate('Screen2', {})
 
 	this.props.navigation.navigate('Screen2', {}) //Gör att man kommer till den adra skärmen när man tänder lampan.
 
@@ -53,7 +80,11 @@ functionOne() {
 }
 functionTwo() {
 	console.log("2")
-	this.InsertDataToServer();
+	
+	this.componentDidMount();
+
+	if (Str == null)
+		this.InsertDataToServer();
 
 }
 functionCombined() { //Sätter ihop funktionerna this.functionOne och this.functionTwo.
