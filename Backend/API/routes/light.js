@@ -45,7 +45,7 @@ con.connect(function(err){
 
   
  
-    router.get('/', (req, res) => {
+    router.get('/:', (req, res) => {
         res.status(200).json({
             messege: 'Getter', 
             result: Values_FromDB
@@ -75,7 +75,7 @@ con.connect(function(err){
   }
 });
 
-router.post('/', (req, res, next) => {
+router.post('/:', (req, res, next) => {
    
 
     var Createdlight= function(){
@@ -104,7 +104,7 @@ router.post('/', (req, res, next) => {
     
     });
 
-    router.delete('/', (req, res, next) => {
+    router.delete('/:', (req, res, next) => {
    
         console.log(req.params.lightName);
         var deleteRows = function(){

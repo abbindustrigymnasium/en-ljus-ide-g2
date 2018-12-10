@@ -35,7 +35,7 @@ componentDidMount() { //Körs när allt är inladdat
    self.setState( //Sätter värden till statevariablen
         {
          
-           Str: responseJson.Str , //TAr första produkten i listans namn
+           Str: Str , //TAr första produkten i listans namn
            
           
         
@@ -46,51 +46,78 @@ componentDidMount() { //Körs när allt är inladdat
 	});
 }
 
+DeleteDataFromServer = () =>{ //Skapar en metod som tar värdena name och price så använder vi dem för att skicka till databasen
+	//var lightName= this.state.lightName ;
+	//const { Str }  = this.state ;
+	
+  /*if(lightName="") //Tittar så namnet inte är tomt
+  {*/
+	  console.log("bla")
+   	fetch('http://192.168.0.112:3001/light/', {  //Skickar värdena till databasen 
+   	method: 'DELETE',	 //Post betyder skicka
+	 	headers: { // skickar med vilkoren 
+	 	'Accept': 'application/json', 
+	 	'Content-Type': 'application/json',
+	 	//}
+	
+	 	}
+   	}).then((response) => response.json())  //gör om den till json
+		.then((responseJson) => {
+	
+ // Showing response message coming from server after inserting records.
+ 
+ 	console.log(responseJson); //Ser hela meddelandet från server
+	//Skriver vilken produkt som blivit tillagd
+	
+		}).catch((error) => { //Fångar fel
+		   	console.error(error);
+		});
+		  
+}
 
 InsertDataToServer =() => {
 
 	//var {lightName} = this.state.lightName;
 	//const {Str} = this.state;
 
-		console.log("äöäöl");
-		fetch('http://192.168.0.112:3001/light/',{ //Bestämmer vart det nya värdet hamnar.
-			method: 'POST', //Bestämmer att ett nytt värde skapas.
-			headers: {
-				'Accept': 'application/json',
-				'Content-Type': 'application/json',
-			}
-			
-			
-		}).then((response) => response.json()).then(responseJSON => { //Gör om responsen till json-format.
-
-			console.log(responseJSON); //Gör så att vi ser om värdet har skickats.
-			
-		}).catch((error)=>{
-			console.log(error); //Meddelar vad som är fel.
-		});
+	console.log("äöäöl");
+	fetch('http://192.168.0.112:3001/light/',{ //Bestämmer vart det nya värdet hamnar.
+		method: 'POST', //Bestämmer att ett nytt värde skapas.
+		headers: {
+			'Accept': 'application/json',
+			'Content-Type': 'application/json',
 		}
+		
+		
+	}).then((response) => response.json()).then(responseJSON => { //Gör om responsen till json-format.
+		console.log(responseJSON); //Gör så att vi ser om värdet har skickats.
+		
+	}).catch((error)=>{
+		console.log(error); //Meddelar vad som är fel.
+	});
+}
 
 functionOne() {
 
 	console.log("1")
 
 	this.props.navigation.navigate('Screen2', {}) //Gör att man kommer till den adra skärmen när man tänder lampan.
-
-	
 }
+
 functionTwo() {
 	console.log("2")
-	
-	this.componentDidMount();
-
-	if (Str == null)
-		this.InsertDataToServer();
-
+	this.DeleteDataFromServer();
 }
+
+functionThree() {
+	this.InsertDataToServer();
+}
+
 functionCombined() { //Sätter ihop funktionerna this.functionOne och this.functionTwo.
+	this.functionTwo();
+	this.functionThree();
 	this.functionOne();
-		this.functionTwo();
-		}
+}
 
     render() {
 
