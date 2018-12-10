@@ -3,14 +3,14 @@ const router = express.Router();
 
 var mysql      = require('mysql');
 var con = mysql.createConnection({
-    host     : 'http://iot.abbindustrigymnasium.se',
+    host     : 'iot.abbindustrigymnasium.se',
     user     : 'ljuside2',
     password : 'lokförarkatt',
     database : 'ljuside2'
 }); 
 con.connect(function(err){
-    if (err)
-        throw err;
+    if (err) 
+    throw err;
 });
 
     var Values_FromDB;  
@@ -76,21 +76,16 @@ con.connect(function(err){
 });
 
 router.post('/', (req, res, next) => {
-    const light = {
-        lightName: req.body.lightName,
-        Str: req.body.Str
-    };
+   
 
     var Createdlight= function(){
         return new Promise(function(resolve,reject){
 
-            var Thelight= [light.lightName,light.Str];
-            console.log(Thelight);
-            con.query('INSERT INTO light (lightName, Str) VALUES ?',[[Thelight]], function (error, results) {
+            con.query('INSERT INTO `light` (`lightName`, `Str`) VALUES ("Warm", 512), ("Cold", 512); ', function (error, results) {
                 if (error)
                 return reject (error);
                 else
-                return resolve(Thelight)
+                return resolve(results)
               });
         })
     }
@@ -109,13 +104,13 @@ router.post('/', (req, res, next) => {
     
     });
 
-    router.delete('/:lightName', (req, res, next) => {
+    router.delete('/', (req, res, next) => {
    
         console.log(req.params.lightName);
         var deleteRows = function(){
             return new Promise(function(resolve, reject){
                 const lightName = req.params.lightName;
-                connection.query('DELETE FROM light WHERE lightName = ?',[lightName], function (error, results) {
+                con.query('DELETE FROM light',[lightName], function (error, results) {
                     console.log(error);
                     if (error)
                     return reject(error);
@@ -140,4 +135,34 @@ router.post('/', (req, res, next) => {
           })
         });
     });
+
+
+    router.patch('/:lightName', (req, res) => {
+        
+    
+        var updateValue = function(){
+            return new Promise(function(resolve, reject){
+                con.query('UPDATE `light` SET `Str` = ? ', function (error, results) {
+                    if (error)
+                    return reject(error);
+                    else
+                    return resolve(results)
+                });
+            })
+        }
+        updateValue().then(result => {
+            if (result.affectedRows > 0)
+                res.status(200).json(result);   
+            else
+                res.status(404).json({
+                message: "Not found"
+            });
+    
+    } ).catch(error => {
+            res.status(500).json({
+               error: error
+          })
+        });
+    });
+
     module.exports = router;

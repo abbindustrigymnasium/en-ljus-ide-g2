@@ -1,63 +1,79 @@
-import React from 'react'; //Importerar den här komponenten från React.
-import { //Bestämmer vad som ska importeras för att användas i den här komponenten där man kan tända lampan.
+import React from 'react';
+import { 
 	StyleSheet,
 	View,
 	Text,
 	TouchableOpacity,
-} from 'react-native'; //StyleSheet, View, Text och TouchableOpacity importeras från react-native.
+} from 'react-native';
 
 
-export default class Component1 extends React.Component {
+export default class Component9 extends React.Component {
 
-constructor(props)
+	constructor(props)
 {
 
-	super(props)
-	this.state= {
-		lightName: '',
-		Str: ''	
-	}
+super(props);
+this.state= {
+	lightName: "",
+	Str: ''
+    
+}
 }
 
-InsertDataToServer =() => {
-
-	var {lightName} = this.state.lightName;
-	const {Str} = this.state;
-
-		if (lightName='') { //Om lampan är släckt. (Lampan är alltid släckt i den första skärmen, screen1.)
-		fetch('http://192.168.0.117:3001/light/',{ //Bestämmer vart det nya värdet hamnar.
-			method: 'POST', //Bestämmer att ett nytt värde skapas.
-			headers: {
-				'Accept': 'application/json',
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify({ //Gör om det som skickas till json-format.
-				lightName: lightName, //Bestämmer att lightName ska heta lightName på http://192.168.0.104:3001/light.
-				Str: 512 ////Bestämmer att ljusstyrkan ska ha värdet 512 när man tänder lampan.
-			})
-		}).then((response) => response.json()).then(responseJSON => { //Gör om responsen till json-format.
-
-			console.log(responseJSON); //Gör så att vi ser om värdet har skickats.
-			alert(responseJSON.message+'	'+ lightName); //Visar om det gick att skicka det nya värdet.
-
-		}).catch((error)=>{
-			console.log(error); //Meddelar vad som är fel.
-		});
-		}
-}
-
-functionOne() {
-	this.props.navigation.navigate('Screen2', {})
+DeleteDataFromServer = () =>{ //Skapar en metod som tar värdena name och price så använder vi dem för att skicka till databasen
+	//var lightName= this.state.lightName ;
+	//const { Str }  = this.state ;
 	
-}
-functionTwo() {
-	this.InsertDataToServer
+  /*if(lightName="") //Tittar så namnet inte är tomt
+  {*/
+	  console.log("bla")
+   fetch('http://192.168.0.124:3001/light/', {  //Skickar värdena till databasen 
+   method: 'DELETE',	 //Post betyder skicka
+	 headers: { // skickar med vilkoren 
+	 'Accept': 'application/json', 
+	 'Content-Type': 'application/json',
+	 //}
+	
+	 }
+   }).then((response) => response.json())  //gör om den till json
+		 .then((responseJson) => {
+	
+ // Showing response message coming from server after inserting records.
+ 
+ console.log(responseJson); //Ser hela meddelandet från server
+	//Skriver vilken produkt som blivit tillagd
+	
+		 }).catch((error) => { //Fångar fel
+		   console.error(error);
+		 });
+		  
+   }
+   /*else
+   alert("Write a lightName and a Strength.") //Om det är tomt skrivs en rekomendation ut
+	
+	 }*/
+	
+	 functionOne() {
+		this.props.navigation.navigate('Screen1', {});
+		
+	}
+	functionTwo() {
 
-}
-functionCombined() {
-	this.functionOne();
+		console.log("bye");
+		this.DeleteDataFromServer ();
+
+	}
+	componentWillUnmount()
+	{
+		console.log("hej!");
+		this.DeleteDataFromServer ();	
+	}
+	functionCombined() {
 		this.functionTwo();
-		}
+		this.functionOne();
+
+			
+			}
 
     render() {
 
@@ -80,14 +96,16 @@ functionCombined() {
 
                 			<View style={styles.itemcontainer1Inner}>
 
+							
+
                                 <TouchableOpacity 
 										style={styles.item1}
 										onPress={() => this.functionCombined()}
-										//Om man trycker på knappen kommer man till den andra skärmen där man kan ändra ljusets värme och ljusstryka. Samtidigt skapas ett nytt värde med 50% ljusstyrka.
+										
 									>
 										
 										<Text style={styles.item1TouchableOpacity}>
-										
+											Off
 										</Text>
 									
 									</TouchableOpacity>

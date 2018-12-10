@@ -3,7 +3,7 @@ const app = express();
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 
-const light = require('./API/routes/light');
+const light = require('./routes/light');
 
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({extended: false}));
