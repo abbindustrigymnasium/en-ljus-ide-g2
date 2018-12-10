@@ -6,7 +6,6 @@ import {
 
 
 import Component9 from './Component9';
-import Component10 from './Component10';
 import Component11 from './Component11';
 
 
@@ -19,7 +18,6 @@ export default class Screen2 extends React.Component {
         this.state = {
            
             Component9Visible: true,
-            Component10Visible: true,
             Component11Visible: true,
         }
 
@@ -99,13 +97,6 @@ export default class Screen2 extends React.Component {
                             hideComponent={ (component) => this.hideComponent(component) }
                             showComponent={ (component) => this.showComponent(component) }
                             visible={ this.state.Component9Visible }
-                        />
-                        <Component10 
-                            navigation={this.props.navigation}
-                            toggleComponent={ (component) => this.toggleComponent(component) }
-                            hideComponent={ (component) => this.hideComponent(component) }
-                            showComponent={ (component) => this.showComponent(component) }
-                            visible={ this.state.Component10Visible }
                         />
                     </View>
 

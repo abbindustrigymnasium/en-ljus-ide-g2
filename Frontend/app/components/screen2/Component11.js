@@ -9,8 +9,8 @@ export default class Component11 extends React.Component {
     this.state = {
       lightName1: "Cold" ,
       lightName2: "Warm",
-  value: 512,
-  value2: 512
+  value: 500,
+  value2: 500
 
        
     }
@@ -28,7 +28,7 @@ UpdateDataToServer1 = () =>{ //Skapar en metod som tar värdena name och price s
   const { lightName2 }  = this.state ;
   var Str = (value2); 
   var Warm= (lightName2);
-   fetch('http://192.168.0.112:3001/light/Warm', {  //Skickar värdena till databasen 
+   fetch('http://192.168.0.126:3001/light/Warm', {  //Skickar värdena till databasen 
    method: 'PATCH',	 //Post betyder skicka
    headers: { // skickar med vilkoren 
    'Accept': 'application/json', 
@@ -66,7 +66,7 @@ UpdateDataToServer1 = () =>{ //Skapar en metod som tar värdena name och price s
         const { lightName1 }  = this.state ;
         var Str = (value); 
         var Cold= (lightName1);
-         fetch('http://192.168.0.112:3001/light/Cold', {  //Skickar värdena till databasen 
+         fetch('http://192.168.0.126:3001/light/Cold', {  //Skickar värdena till databasen 
          method: 'PATCH',	 //Post betyder skicka
          headers: { // skickar med vilkoren 
          'Accept': 'application/json', 
@@ -98,56 +98,51 @@ UpdateDataToServer1 = () =>{ //Skapar en metod som tar värdena name och price s
          
   render() {
     return (
+      <View>
       <View style = {styles.container}>
-        <View>
+        <View  style = {styles.viewCold}>
           <Slider style = {styles.slider}
             //value={this.state.value}
             value={this.state.value}
             onValueChange={value => { this.UpdateDataToServer2({ value }); this.setState({value});} }
             
-            
+    
            
            
-            maximumValue={1024}
+            maximumValue={1000}
             minimumValue={15}
             minimumTrackTintColor='rgb(0, 130, 255)'
             step={1}
             //value={this.state.value}
-            
-            //maximumValue={1024}
-            //minimumValue={154} 
-            minimumTrackTintColor='rgb(0, 130, 255)'
-            //step={1}
           />
+          </View>
+                  </View>
           <Text style = {styles.blue}>
-            Cold: {this.state.value + "%"}
+            Cold: {this.state.value/10 + "%"}
           </Text>
-        </View>
-        <View>
+          <View style = {styles.container}>
+          <View  style = {styles.viewWarm}>
           <Slider style = {styles.slider2}
             //value={this.state.value}
-            value2={this.state.value2}
+            value={this.state.value2}
             onValueChange={value2 => { this.UpdateDataToServer1({ value2 }); this.setState({value2});} }
             
             
            
            
-            maximumValue={1024}
+            maximumValue={1000}
             minimumValue={15}
-            minimumTrackTintColor='rgb(0, 130, 255)'
+            minimumTrackTintColor='rgb(255, 130, 0)'
             step={1}
             //value={this.state.value}
-            
-            //maximumValue={1024}
-            //minimumValue={154} 
-            minimumTrackTintColor='rgb(0, 130, 255)'
-           // step={1}
           />
+          </View>
+        </View>
           <Text style = {styles.red}>
-            Warm: {this.state.value2 + "%"}
+            Warm: {this.state.value2/10 + "%"}
            
           </Text>
-        </View>
+
       </View>
     );
   }
@@ -167,14 +162,19 @@ const styles = StyleSheet.create({
   },
   blue: {
     color: 'lightblue',
-    transform: [{rotate: '90deg'}],
-    marginLeft: 175,
+    marginLeft: 75,
+    marginTop: 150
   },
   red: {
     color: 'orangered',
-    transform: [{rotate: '90deg'}]
+    marginRight: 120
   },
-  slider2: {
-    marginTop: 60,
+  viewWarm: {
+    marginTop: 70,
+  },
+  viewCold: {
+    width: 300,
+    marginRight: 300,
+    marginBottom: 160
   }
 });

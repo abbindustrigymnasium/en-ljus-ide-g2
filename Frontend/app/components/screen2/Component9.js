@@ -36,16 +36,16 @@ DeleteDataFromServer = () =>{ //Skapar en metod som tar värdena name och price 
 	
 	 }
    }).then((response) => response.json())  //gör om den till json
-		 .then((responseJson) => {
+		.then((responseJson) => {
 	
  // Showing response message coming from server after inserting records.
  
- console.log(responseJson); //Ser hela meddelandet från server
+console.log(responseJson); //Ser hela meddelandet från server
 	//Skriver vilken produkt som blivit tillagd
 	
-		 }).catch((error) => { //Fångar fel
-		   console.error(error);
-		 });
+		}).catch((error) => { //Fångar fel
+		   	console.error(error);
+		});
 		  
    }
    /*else
@@ -53,7 +53,7 @@ DeleteDataFromServer = () =>{ //Skapar en metod som tar värdena name och price 
 	
 	 }*/
 	
-	 functionOne() {
+	functionOne() {
 		this.props.navigation.navigate('Screen1', {});
 		
 	}
@@ -62,11 +62,6 @@ DeleteDataFromServer = () =>{ //Skapar en metod som tar värdena name och price 
 		console.log("bye");
 		this.DeleteDataFromServer ();
 
-	}
-	componentWillUnmount()
-	{
-		console.log("hej!");
-		this.DeleteDataFromServer ();	
 	}
 	functionCombined() {
 		this.functionTwo();
@@ -175,7 +170,7 @@ const styles = StyleSheet.create({
 	    justifyContent: 'center',
 	    alignItems: 'center',
 	    overflow: 'hidden',
-	    padding: 10,
+		marginTop: 790
 	},
 	
 	item1TouchableOpacity: {

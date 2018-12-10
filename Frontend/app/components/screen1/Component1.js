@@ -15,32 +15,31 @@ constructor(props)
 	super(props)
 	this.state= {
 		lightName: '',
-		Str: ''	
+		Str: ''
 	}
 }
 
 componentDidMount() { //Körs när allt är inladdat
     let self = this; //Kallar this för self för att lättare använda
 
-      fetch('http://192.168.0.112:3001/light/Str', {  //Urlen där vi vill skicka ifrån (Detta är datorns ipadress, hämtas via ipconfig i cmd, ip4)
+      fetch('http://192.168.0.126:3001/light/Str', {  //Urlen där vi vill skicka ifrån (Detta är datorns ipadress, hämtas via ipconfig i cmd, ip4)
         method: 'GET'  //Säger att det är GET vi vill använda
       }).then((response) => response.json())  //Gör om resultatet till json
       .then((responseJson) => {
-         // console.log(responseJson, 'res');
-         // self.setState({ products: Object.assign(responseJson.result, products)  });
+        // console.log(responseJson, 'res');
+        // self.setState({ products: Object.assign(responseJson.result, products)  });
        
-         var Str = responseJson.result; //Sätter result som en variabel
-          if (responseJson.message == "Getter") { //Om response.message är Getter
+        var Str = responseJson.result; //Sätter result som en variabel
+          	if (responseJson.message == "Getter") { //Om response.message är Getter
             if (responseJson.result.length!=0) {
-   self.setState( //Sätter värden till statevariablen
+    self.setState( //Sätter värden till statevariablen
         {
          
-           Str: Str , //TAr första produkten i listans namn
+           	Str: Str , //TAr första produkten i listans namn
            
           
         
-    }
-)
+    })
 			}
 		}
 	});
@@ -53,27 +52,27 @@ DeleteDataFromServer = () =>{ //Skapar en metod som tar värdena name och price 
   /*if(lightName="") //Tittar så namnet inte är tomt
   {*/
 	  console.log("bla")
-   	fetch('http://192.168.0.112:3001/light/', {  //Skickar värdena till databasen 
-   	method: 'DELETE',	 //Post betyder skicka
-	 	headers: { // skickar med vilkoren 
-	 	'Accept': 'application/json', 
-	 	'Content-Type': 'application/json',
-	 	//}
+   fetch('http://192.168.0.126:3001/light/', {  //Skickar värdena till databasen 
+   method: 'DELETE',	 //Post betyder skicka
+	 headers: { // skickar med vilkoren 
+	 'Accept': 'application/json', 
+	 'Content-Type': 'application/json',
+	 //}
 	
-	 	}
-   	}).then((response) => response.json())  //gör om den till json
+	 }
+   }).then((response) => response.json())  //gör om den till json
 		.then((responseJson) => {
 	
  // Showing response message coming from server after inserting records.
  
- 	console.log(responseJson); //Ser hela meddelandet från server
+console.log(responseJson); //Ser hela meddelandet från server
 	//Skriver vilken produkt som blivit tillagd
 	
 		}).catch((error) => { //Fångar fel
 		   	console.error(error);
 		});
 		  
-}
+   }
 
 InsertDataToServer =() => {
 
@@ -81,13 +80,12 @@ InsertDataToServer =() => {
 	//const {Str} = this.state;
 
 	console.log("äöäöl");
-	fetch('http://192.168.0.112:3001/light/',{ //Bestämmer vart det nya värdet hamnar.
+	fetch('http://192.168.0.126:3001/light/',{ //Bestämmer vart det nya värdet hamnar.
 		method: 'POST', //Bestämmer att ett nytt värde skapas.
 		headers: {
 			'Accept': 'application/json',
 			'Content-Type': 'application/json',
 		}
-		
 		
 	}).then((response) => response.json()).then(responseJSON => { //Gör om responsen till json-format.
 		console.log(responseJSON); //Gör så att vi ser om värdet har skickats.
@@ -95,28 +93,6 @@ InsertDataToServer =() => {
 	}).catch((error)=>{
 		console.log(error); //Meddelar vad som är fel.
 	});
-}
-
-functionOne() {
-
-	console.log("1")
-
-	this.props.navigation.navigate('Screen2', {}) //Gör att man kommer till den adra skärmen när man tänder lampan.
-}
-
-functionTwo() {
-	console.log("2")
-	this.DeleteDataFromServer();
-}
-
-functionThree() {
-	this.InsertDataToServer();
-}
-
-functionCombined() { //Sätter ihop funktionerna this.functionOne och this.functionTwo.
-	this.functionTwo();
-	this.functionThree();
-	this.functionOne();
 }
 
     render() {
@@ -143,7 +119,7 @@ functionCombined() { //Sätter ihop funktionerna this.functionOne och this.funct
                                 <TouchableOpacity 
 										style={styles.item1}
 
-										onPress={() => this.functionCombined()}
+										onPress={() => { this.DeleteDataFromServer();  this.InsertDataToServer(); this.props.navigation.navigate('Screen2', {});}}
 										//Om man trycker på knappen kommer man till den andra skärmen där man kan ändra ljusets värme och ljusstryka. Samtidigt skapas ett nytt värde med 50% ljusstyrka.
 									>
 										

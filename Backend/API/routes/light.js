@@ -21,7 +21,7 @@ con.connect(function(err){
     var GetLight = function(){
       return new Promise(function(resolve,reject){
 
-          con.query('SELECT * FROM light ', function (error, results) {
+          con.query('SELECT * FROM light', function (error, results) {
               if (error) 
               return reject (error);
               else
@@ -45,7 +45,7 @@ con.connect(function(err){
 
   
  
-    router.get('/:', (req, res) => {
+    router.get('/', (req, res) => {
         res.status(200).json({
             messege: 'Getter', 
             result: Values_FromDB
@@ -75,13 +75,13 @@ con.connect(function(err){
   }
 });
 
-router.post('/:', (req, res, next) => {
+router.post('/', (req, res, next) => {
    
 
     var Createdlight= function(){
         return new Promise(function(resolve,reject){
 
-            con.query('INSERT INTO `light` (`lightName`, `Str`) VALUES ("Warm", 512), ("Cold", 512); ', function (error, results) {
+            con.query('INSERT INTO `light` (`lightName`, `Str`) VALUES ("Warm", 500), ("Cold", 500); ', function (error, results) {
                 if (error)
                 return reject (error);
                 else
@@ -104,7 +104,7 @@ router.post('/:', (req, res, next) => {
     
     });
 
-    router.delete('/:', (req, res, next) => {
+    router.delete('/', (req, res, next) => {
    
         console.log(req.params.lightName);
         var deleteRows = function(){
@@ -173,15 +173,5 @@ router.post('/:', (req, res, next) => {
           })
         });
     });
-
-    
-
-
-
-
-
-    
-
-    
 
     module.exports = router;
