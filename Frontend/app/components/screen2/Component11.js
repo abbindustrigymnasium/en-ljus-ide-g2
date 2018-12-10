@@ -28,7 +28,7 @@ UpdateDataToServer1 = () =>{ //Skapar en metod som tar värdena name och price s
   const { lightName2 }  = this.state ;
   var Str = (value2); 
   var Warm= (lightName2);
-   fetch('http://192.168.0.126:3001/light/Warm', {  //Skickar värdena till databasen 
+   fetch('http://192.168.0.112:3001/light/Warm', {  //Skickar värdena till databasen 
    method: 'PATCH',	 //Post betyder skicka
    headers: { // skickar med vilkoren 
    'Accept': 'application/json', 
@@ -66,7 +66,7 @@ UpdateDataToServer1 = () =>{ //Skapar en metod som tar värdena name och price s
         const { lightName1 }  = this.state ;
         var Str = (value); 
         var Cold= (lightName1);
-         fetch('http://192.168.0.126:3001/light/Cold', {  //Skickar värdena till databasen 
+         fetch('http://192.168.0.112:3001/light/Cold', {  //Skickar värdena till databasen 
          method: 'PATCH',	 //Post betyder skicka
          headers: { // skickar med vilkoren 
          'Accept': 'application/json', 
