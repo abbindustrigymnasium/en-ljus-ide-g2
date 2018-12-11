@@ -5,6 +5,7 @@ import {
 } from 'react-native';
 
 import Component1 from './Component1';
+import {LinearGradient} from 'expo';
 
 export default class Screen1 extends React.Component {
 
@@ -76,7 +77,9 @@ export default class Screen1 extends React.Component {
             
             <View style={styles.container}>
 
-                <View style={styles.screencontainer}>
+               <LinearGradient style={styles.screencontainer}
+                colors={['#14B009', '#003319' ]}
+                                >
 
                     <View style={styles.screencontainerInner}>
 
@@ -90,7 +93,7 @@ export default class Screen1 extends React.Component {
 
                     </View>
 
-                </View>
+                </LinearGradient>
 
             </View>
 
@@ -105,7 +108,7 @@ const styles = StyleSheet.create({
     },
     
 	screencontainer: {
-	    backgroundColor: 'rgba(255,255,255,1)',
+	   // backgroundColor: 'rgba(255,255,255,1)',
 	    flex: 1,
 	},
 	

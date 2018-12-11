@@ -81,7 +81,7 @@ router.post('/', (req, res, next) => {
     var Createdlight= function(){
         return new Promise(function(resolve,reject){
 
-            con.query('INSERT INTO `light` (`lightName`, `Str`) VALUES ("Warm", 500), ("Cold", 500); ', function (error, results) {
+            con.query('INSERT INTO `light` (`lightName`, `StrCold`, `StrWarm`) VALUES ("lightName", 500, 500); ', function (error, results) {
                 if (error)
                 return reject (error);
                 else
@@ -137,17 +137,18 @@ router.post('/', (req, res, next) => {
     });
 
 
-    router.patch('/:lightName', (req, res) => {
+    router.patch('/', (req, res) => {
         
         const light = {
             lightName: req.body.lightName,
-            Str: req.body.Str
+            StrCold: req.body.StrCold,
+            StrWarm: req.body.StrWarm
         }
         
     
         var updateValue = function(){
             return new Promise(function(resolve, reject){
-                con.query('UPDATE `light` SET `Str` = ? WHERE `lightName` = ?' , [light.Str, light.lightName], function (error, results) {
+                con.query('UPDATE `light` SET `StrCold` = ?,  `StrWarm` = ? WHERE `lightName`= lightName', [light.StrCold, light.StrWarm, light.lightName], function (error, results) {
                     if (error)
 
                     return reject(error)
@@ -159,7 +160,7 @@ router.post('/', (req, res, next) => {
         }
         updateValue().then(result => {
             if (result.affectedRows > 0)
-                res.status(200).json(result);   
+                res.status(200).json(result);
 
             else
                 res.status(404).json({

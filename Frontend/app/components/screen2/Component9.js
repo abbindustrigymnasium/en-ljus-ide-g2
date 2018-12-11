@@ -4,6 +4,7 @@ import {
 	View,
 	Text,
 	TouchableOpacity,
+	Image
 } from 'react-native';
 
 
@@ -27,7 +28,7 @@ DeleteDataFromServer = () =>{ //Skapar en metod som tar värdena name och price 
   /*if(lightName="") //Tittar så namnet inte är tomt
   {*/
 	  console.log("bla")
-   fetch('http://192.168.0.126:3001/light/', {  //Skickar värdena till databasen 
+   fetch('http://192.168.0.108:3001/light/', {  //Skickar värdena till databasen 
    method: 'DELETE',	 //Post betyder skicka
 	 headers: { // skickar med vilkoren 
 	 'Accept': 'application/json', 
@@ -99,9 +100,10 @@ console.log(responseJson); //Ser hela meddelandet från server
 										
 									>
 										
-										<Text style={styles.item1TouchableOpacity}>
-											Off
-										</Text>
+											
+										<Image
+          									source={require('../../img/Off.png')} 
+        								/>
 									
 									</TouchableOpacity>
 
@@ -160,17 +162,9 @@ const styles = StyleSheet.create({
 	},
 	
 	item1: {
-	    backgroundColor: '#1194f6',
-	    borderWidth: 0,
-	    borderColor: '#eee',
-	    borderStyle: 'solid',
-	    borderRadius: 4,
-	    width: '100%',
-	    height: '100%',
-	    justifyContent: 'center',
-	    alignItems: 'center',
-	    overflow: 'hidden',
-		marginTop: 790
+	  
+	   marginBottom: -100,
+	  alignItems: 'center',
 	},
 	
 	item1TouchableOpacity: {

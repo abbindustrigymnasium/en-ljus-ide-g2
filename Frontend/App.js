@@ -10,7 +10,7 @@ import {
 
 import Screen1 from './app/components/screen1/Screen1';
 import Screen2 from './app/components/screen2/Screen2';
-import Screen3 from './app/components/screen3/Screen3';
+//import Screen3 from './app/components/screen3/Screen3';
 
 const StackNavigator = createStackNavigator({
     Screen1: { 
@@ -27,13 +27,13 @@ const StackNavigator = createStackNavigator({
             header: null,
         }
     },
-    Screen3: { 
+    /*Screen3: { 
         screen: Screen3,
         navigationOptions: {
             title: false,
             header: null,
         }
-    },
+    },*/
 },{ headerMode: 'screen' });
 
 export default class App extends React.Component {

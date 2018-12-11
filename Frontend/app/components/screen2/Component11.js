@@ -7,10 +7,9 @@ export default class Component11 extends React.Component {
     super(props);
 
     this.state = {
-      lightName1: "Cold" ,
-      lightName2: "Warm",
-  value: 500,
-  value2: 500
+      lightName: "lightName" ,
+      value: 500,
+      value2: 500
 
        
     }
@@ -22,23 +21,26 @@ export default class Component11 extends React.Component {
 
   
 
-UpdateDataToServer1 = () =>{ //Skapar en metod som tar värdena name och price så använder vi dem för att skicka till databasen
+UpdateDataToServer = () =>{ //Skapar en metod som tar värdena name och price så använder vi dem för att skicka till databasen
   //var Name= this.state.n ;
-  const { value2}  = this.state ;
-  const { lightName2 }  = this.state ;
-  var Str = (value2); 
-  var Warm= (lightName2);
-   fetch('http://192.168.0.126:3001/light/Warm', {  //Skickar värdena till databasen 
+  const { lightName } = this.state;
+  const { value }  = this.state;
+  const { value2 }  = this.state;
+
+  console.log(value);
+  console.log(value2);
+   fetch('http://192.168.0.108:3001/light/', {  //Skickar värdena till databasen 
    method: 'PATCH',	 //Post betyder skicka
    headers: { // skickar med vilkoren 
    'Accept': 'application/json', 
    'Content-Type': 'application/json',
    },
 
-   body: JSON.stringify({
+ body: JSON.stringify({
     
-    lightName: Warm,
-    Str: Str
+  lightName: lightName,
+     StrCold: value,
+    StrWarm: value2
    })
 
     
@@ -54,47 +56,7 @@ UpdateDataToServer1 = () =>{ //Skapar en metod som tar värdena name och price s
 			 }).catch((error) => { //Fångar fel
 			   console.error(error);
        });
-      }
-
-
-
-
-      
-      UpdateDataToServer2 = () =>{ //Skapar en metod som tar värdena name och price så använder vi dem för att skicka till databasen
-        //var Name= this.state.n ;
-        const { value}  = this.state ;
-        const { lightName1 }  = this.state ;
-        var Str = (value); 
-        var Cold= (lightName1);
-         fetch('http://192.168.0.126:3001/light/Cold', {  //Skickar värdena till databasen 
-         method: 'PATCH',	 //Post betyder skicka
-         headers: { // skickar med vilkoren 
-         'Accept': 'application/json', 
-         'Content-Type': 'application/json',
-         },
-
-         body: JSON.stringify({
-          
-          lightName: Cold,
-          Str: Str
-         })
-        
-        
-         }).then((response) => response.json())  //gör om den till json
-           .then((responseJson) => {
-        
-       // Showing response message coming from server after inserting records.
-       
-       console.log(responseJson); //Ser hela meddelandet från server
-          
-        
-           }).catch((error) => { //Fångar fel
-             console.error(error);
-           });
-          }
-          
-
-
+}
          
   render() {
     return (
@@ -104,7 +66,7 @@ UpdateDataToServer1 = () =>{ //Skapar en metod som tar värdena name och price s
           <Slider style = {styles.slider}
             //value={this.state.value}
             value={this.state.value}
-            onValueChange={value => { this.UpdateDataToServer2({ value }); this.setState({value});} }
+            onValueChange={value => { this.UpdateDataToServer({ value }); this.setState({value});} }
             
     
            
@@ -125,7 +87,7 @@ UpdateDataToServer1 = () =>{ //Skapar en metod som tar värdena name och price s
           <Slider style = {styles.slider2}
             //value={this.state.value}
             value={this.state.value2}
-            onValueChange={value2 => { this.UpdateDataToServer1({ value2 }); this.setState({value2});} }
+            onValueChange={value2 => { this.UpdateDataToServer({ value2 }); this.setState({value2});} }
             
             
            
@@ -139,7 +101,7 @@ UpdateDataToServer1 = () =>{ //Skapar en metod som tar värdena name och price s
           </View>
         </View>
           <Text style = {styles.red}>
-            Warm: {this.state.value2/10 + "%"}
+           Warm: {this.state.value2/10 + "%"}
            
           </Text>
 
@@ -157,24 +119,72 @@ const styles = StyleSheet.create({
     marginTop:10,
     alignItems: "stretch",
     justifyContent: "center",
-    paddingTop: 7.5,
+    paddingTop: 250,
     transform: [{rotate: '270deg'}]
   },
   blue: {
     color: 'lightblue',
-    marginLeft: 75,
-    marginTop: 150
+    marginLeft: 20,
+    paddingTop:300,
+    paddingLeft: 50,
+  
+    marginBottom:0,
+    zIndex: -100,
+   
+    
+    
+    
+
+  
+    //width: 60
   },
   red: {
-    color: 'orangered',
-    marginRight: 120
+    color: 'rgb(255,255,102)',
+    marginLeft:250,
+    marginTop:-275,
+    marginBottom:300,
+    paddingBottom: -400,
+    paddingRight: 500,
+    marginBottom:0,
+  
   },
   viewWarm: {
-    marginTop: 70,
+    marginTop: -130,
+    marginLeft: 500 ,
+    marginRight:500,
+    paddingTop:120,
+   
+    marginBottom:100,
+    
+    
+    
+    
   },
   viewCold: {
-    width: 300,
-    marginRight: 300,
-    marginBottom: 160
-  }
+   // width: 300,
+  
+    marginRight:400,
+    marginLeft: -320 ,
+    marginBottom: 200,
+    marginTop:-230,
+    
+
+    
+
+  },
+
+  slider: {
+
+    //marginBottom: -30,
+    marginLeft: 100,
+    marginRight: -290,
+
+  },
+
+  slider2: {
+
+    marginLeft: -140,
+    marginRight: -320,
+
+  },
 });

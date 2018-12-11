@@ -4,7 +4,9 @@ import { //Bestämmer vad som ska importeras för att användas i den här kompo
 	View,
 	Text,
 	TouchableOpacity,
+	Image
 } from 'react-native'; //StyleSheet, View, Text och TouchableOpacity importeras från react-native.
+
 
 
 export default class Component1 extends React.Component {
@@ -22,7 +24,7 @@ constructor(props)
 componentDidMount() { //Körs när allt är inladdat
     let self = this; //Kallar this för self för att lättare använda
 
-      fetch('http://192.168.0.126:3001/light/Str', {  //Urlen där vi vill skicka ifrån (Detta är datorns ipadress, hämtas via ipconfig i cmd, ip4)
+      fetch('http://192.168.0.121:3001/light/Str', {  //Urlen där vi vill skicka ifrån (Detta är datorns ipadress, hämtas via ipconfig i cmd, ip4)
         method: 'GET'  //Säger att det är GET vi vill använda
       }).then((response) => response.json())  //Gör om resultatet till json
       .then((responseJson) => {
@@ -52,7 +54,7 @@ DeleteDataFromServer = () =>{ //Skapar en metod som tar värdena name och price 
   /*if(lightName="") //Tittar så namnet inte är tomt
   {*/
 	  console.log("bla")
-   fetch('http://192.168.0.126:3001/light/', {  //Skickar värdena till databasen 
+   fetch('http://192.168.0.108:3001/light/', {  //Skickar värdena till databasen 
    method: 'DELETE',	 //Post betyder skicka
 	 headers: { // skickar med vilkoren 
 	 'Accept': 'application/json', 
@@ -80,7 +82,7 @@ InsertDataToServer =() => {
 	//const {Str} = this.state;
 
 	console.log("äöäöl");
-	fetch('http://192.168.0.126:3001/light/',{ //Bestämmer vart det nya värdet hamnar.
+	fetch('http://192.168.0.108:3001/light/',{ //Bestämmer vart det nya värdet hamnar.
 		method: 'POST', //Bestämmer att ett nytt värde skapas.
 		headers: {
 			'Accept': 'application/json',
@@ -117,15 +119,18 @@ InsertDataToServer =() => {
                 			<View style={styles.itemcontainer1Inner}>
 
                                 <TouchableOpacity 
-										style={styles.item1}
+										
 
 										onPress={() => { this.DeleteDataFromServer();  this.InsertDataToServer(); this.props.navigation.navigate('Screen2', {});}}
 										//Om man trycker på knappen kommer man till den andra skärmen där man kan ändra ljusets värme och ljusstryka. Samtidigt skapas ett nytt värde med 50% ljusstyrka.
 									>
 										
-										<Text style={styles.item1TouchableOpacity}>
 										
-										</Text>
+										
+										
+										<Image
+          									source={require('../../img/OnOff.png')} style={styles.On}
+        								/>
 									
 									</TouchableOpacity>
 
@@ -136,8 +141,11 @@ InsertDataToServer =() => {
                 	</View>
                 	
                 </View>
-
+					
+					
+				
             </View>
+			
             
         );
 
@@ -146,6 +154,12 @@ InsertDataToServer =() => {
 }
 
 const styles = StyleSheet.create({
+
+	On: { 
+		marginTop: 600,
+		//marginBottom: 10
+
+	},
     
 	component: {
 	    width: '100%',
