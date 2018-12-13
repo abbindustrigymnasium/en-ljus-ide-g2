@@ -28,7 +28,7 @@ DeleteDataFromServer = () =>{ //Skapar en metod som tar värdena name och price 
   /*if(lightName="") //Tittar så namnet inte är tomt
   {*/
 	  console.log("bla")
-   fetch('http://192.168.0.108:3001/light/', {  //Skickar värdena till databasen 
+   fetch('http://192.168.0.131:3001/light/', {  //Skickar värdena till databasen 
    method: 'DELETE',	 //Post betyder skicka
 	 headers: { // skickar med vilkoren 
 	 'Accept': 'application/json', 
