@@ -2,7 +2,6 @@ import React from 'react'; //Importerar den här komponenten från React.
 import { //Bestämmer vad som ska importeras för att användas i den här komponenten där man kan tända lampan.
 	StyleSheet,
 	View,
-	Text,
 	TouchableOpacity,
 	Image
 } from 'react-native'; //StyleSheet, View, Text och TouchableOpacity importeras från react-native.
@@ -11,10 +10,10 @@ import { //Bestämmer vad som ska importeras för att användas i den här kompo
 
 export default class Component1 extends React.Component {
 
-constructor(props)
-{
-
+constructor(props){
+	
 	super(props)
+
 	this.state= {
 		lightName: '',
 		Str: ''
@@ -24,65 +23,42 @@ constructor(props)
 componentDidMount() { //Körs när allt är inladdat
     let self = this; //Kallar this för self för att lättare använda
 
-      fetch('http://192.168.0.121:3001/light/Str', {  //Urlen där vi vill skicka ifrån (Detta är datorns ipadress, hämtas via ipconfig i cmd, ip4)
-        method: 'GET'  //Säger att det är GET vi vill använda
-      }).then((response) => response.json())  //Gör om resultatet till json
-      .then((responseJson) => {
-        // console.log(responseJson, 'res');
-        // self.setState({ products: Object.assign(responseJson.result, products)  });
+    fetch('http://192.168.0.122:3001/light/Str', {  //Urlen där vi vill skicka ifrån (Detta är datorns ipadress, hämtas via ipconfig i cmd, ip4)
+    	method: 'GET'  //Säger att det är GET vi vill använda
+	  }).then((response) => response.json())  //Gör om resultatet till json
+
+	.then((responseJson) => {	// console.log(responseJson, 'res');	// self.setState({ products: Object.assign(responseJson.result, products)  });
        
-        var Str = responseJson.result; //Sätter result som en variabel
-          	if (responseJson.message == "Getter") { //Om response.message är Getter
-            if (responseJson.result.length!=0) {
-    self.setState( //Sätter värden till statevariablen
-        {
-         
-           	Str: Str , //TAr första produkten i listans namn
-           
-          
-        
-    })
+    var Str = responseJson.result; //Sätter result som en variabel
+      	if (responseJson.message == "Getter") { //Om response.message är Getter
+        	if (responseJson.result.length!=0) {
+    			self.setState({ //Sätter värden till statevariablen        
+           			Str: Str , //TAr första produkten i listans namn     
+    			})
 			}
 		}
 	});
 }
 
 DeleteDataFromServer = () =>{ //Skapar en metod som tar värdena name och price så använder vi dem för att skicka till databasen
-	//var lightName= this.state.lightName ;
-	//const { Str }  = this.state ;
-	
-  /*if(lightName="") //Tittar så namnet inte är tomt
-  {*/
-	  console.log("bla")
-   fetch('http://192.168.0.131:3001/light/', {  //Skickar värdena till databasen 
-   method: 'DELETE',	 //Post betyder skicka
-	 headers: { // skickar med vilkoren 
-	 'Accept': 'application/json', 
-	 'Content-Type': 'application/json',
-	 //}
-	
-	 }
-   }).then((response) => response.json())  //gör om den till json
-		.then((responseJson) => {
-	
- // Showing response message coming from server after inserting records.
- 
-console.log(responseJson); //Ser hela meddelandet från server
-	//Skriver vilken produkt som blivit tillagd
-	
-		}).catch((error) => { //Fångar fel
-		   	console.error(error);
-		});
-		  
-   }
+	console.log("bla")
+    fetch('http://192.168.0.122:3001/light/', {  //Skickar värdena till databasen 
+    	method: 'DELETE',	 //Post betyder skicka
+		headers: { // skickar med vilkoren 
+	'Accept': 'application/json', 
+    'Content-Type': 'application/json',
+	 	}
+   	}).then((response) => response.json())  //gör om den till json
+	.then((responseJson) => {	// Showing response message coming from server after inserting records.
+		console.log(responseJson); //Ser hela meddelandet från server //Skriver vilken produkt som blivit tillagd
+	}).catch((error) => { //Fångar fel
+		console.error(error);
+	});
+}
 
 InsertDataToServer =() => {
-
-	//var {lightName} = this.state.lightName;
-	//const {Str} = this.state;
-
 	console.log("äöäöl");
-	fetch('http://192.168.0.131:3001/light/',{ //Bestämmer vart det nya värdet hamnar.
+	fetch('http://192.168.0.122:3001/light/',{ //Bestämmer vart det nya värdet hamnar.
 		method: 'POST', //Bestämmer att ett nytt värde skapas.
 		headers: {
 			'Accept': 'application/json',
@@ -98,17 +74,11 @@ InsertDataToServer =() => {
 }
 
     render() {
-
         if (!this.props.visible) {
             return false;
         }
-        
-
-        return (
-
-            <View 
-                style={styles.component}
-            >
+        return(
+            <View style={styles.component}>
 
                 <View style={styles.layouts}>
 
@@ -120,14 +90,9 @@ InsertDataToServer =() => {
 
                                 <TouchableOpacity 
 										
-
 										onPress={() => { this.DeleteDataFromServer();  this.InsertDataToServer(); this.props.navigation.navigate('Screen2', {});}}
 										//Om man trycker på knappen kommer man till den andra skärmen där man kan ändra ljusets värme och ljusstryka. Samtidigt skapas ett nytt värde med 50% ljusstyrka.
-									>
-										
-										
-										
-										
+								>																				
 										<Image
           									source={require('../../img/OnOff.png')} style={styles.On}
         								/>
@@ -140,17 +105,11 @@ InsertDataToServer =() => {
 
                 	</View>
                 	
-                </View>
-					
-					
+                </View>				
 				
             </View>
-			
-            
         );
-
     }
-
 }
 
 const styles = StyleSheet.create({
@@ -158,7 +117,6 @@ const styles = StyleSheet.create({
 	On: { 
 		marginTop: 600,
 		//marginBottom: 10
-
 	},
     
 	component: {

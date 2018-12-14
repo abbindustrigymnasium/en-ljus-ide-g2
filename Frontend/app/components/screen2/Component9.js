@@ -9,67 +9,52 @@ import {
 
 
 export default class Component9 extends React.Component {
+	
+	constructor(props){
 
-	constructor(props)
-{
-
-super(props);
-this.state= {
-	lightName: "",
-	Str: ''
-    
-}
-}
-
-DeleteDataFromServer = () =>{ //Skapar en metod som tar värdena name och price så använder vi dem för att skicka till databasen
-	//var lightName= this.state.lightName ;
-	//const { Str }  = this.state ;
-	
-  /*if(lightName="") //Tittar så namnet inte är tomt
-  {*/
-	  console.log("bla")
-   fetch('http://192.168.0.131:3001/light/', {  //Skickar värdena till databasen 
-   method: 'DELETE',	 //Post betyder skicka
-	 headers: { // skickar med vilkoren 
-	 'Accept': 'application/json', 
-	 'Content-Type': 'application/json',
-	 //}
-	
-	 }
-   }).then((response) => response.json())  //gör om den till json
-		.then((responseJson) => {
-	
- // Showing response message coming from server after inserting records.
- 
-console.log(responseJson); //Ser hela meddelandet från server
-	//Skriver vilken produkt som blivit tillagd
-	
-		}).catch((error) => { //Fångar fel
-		   	console.error(error);
-		});
-		  
-   }
-   /*else
-   alert("Write a lightName and a Strength.") //Om det är tomt skrivs en rekomendation ut
-	
-	 }*/
-	
-	functionOne() {
-		this.props.navigation.navigate('Screen1', {});
-		
+		super(props);
+		this.state= {
+			lightName: "",
+			Str: ''
+    	}
 	}
-	functionTwo() {
 
+	DeleteDataFromServer = () =>{ //Skapar en metod som tar värdena name och price så använder vi dem för att skicka till databasen
+
+		console.log("bla")
+		fetch('http://192.168.0.122:3001/light/', {  //Skickar värdena till databasen 
+			method: 'DELETE',	 //Post betyder skicka
+			headers: { // skickar med vilkoren 
+				'Accept': 'application/json', 
+				'Content-Type': 'application/json',
+			}
+		}).then((response) => response.json())  //gör om den till json
+			.then((responseJson) => {
+		
+	// Showing response message coming from server after inserting records.
+	
+			console.log(responseJson); //Ser hela meddelandet från server
+			//Skriver vilken produkt som blivit tillagd
+			}).catch((error) => { //Fångar fel
+				console.error(error);
+			});
+			
+	}
+
+	functionOne() {	//en funktion som ska göra så att den byter screen
+		this.props.navigation.navigate('Screen1', {});
+			
+	}
+
+	functionTwo() {	//funktion som kör delete
 		console.log("bye");
 		this.DeleteDataFromServer ();
 
 	}
-	functionCombined() {
+	functionCombined() {	//funktion som kör båda samtidigt
 		this.functionTwo();
-		this.functionOne();
-
-			
-			}
+		this.functionOne();	
+	}
 
     render() {
 
@@ -80,9 +65,7 @@ console.log(responseJson); //Ser hela meddelandet från server
 
         return (
 
-            <View 
-                style={styles.component}
-            >
+            <View style={styles.component}>
 
                 <View style={styles.layouts}>
 
@@ -92,12 +75,9 @@ console.log(responseJson); //Ser hela meddelandet från server
 
                 			<View style={styles.itemcontainer1Inner}>
 
-							
-
                                 <TouchableOpacity 
 										style={styles.item1}
-										onPress={() => this.functionCombined()}
-										
+										onPress={() => this.functionCombined()}	//när man trycker på knappen ska den köra functionCombined
 									>
 										
 											

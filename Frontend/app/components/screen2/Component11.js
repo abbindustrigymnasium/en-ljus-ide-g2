@@ -29,7 +29,7 @@ UpdateDataToServer = () =>{ //Skapar en metod som tar värdena name och price s�
 
   console.log(value);
   console.log(value2);
-   fetch('http://192.168.0.131:3001/light/', {  //Skickar värdena till databasen 
+   fetch('http://192.168.0.122:3001/light/', {  //Skickar värdena till databasen 
    method: 'PATCH',	 //Post betyder skicka
    headers: { // skickar med vilkoren 
    'Accept': 'application/json', 
