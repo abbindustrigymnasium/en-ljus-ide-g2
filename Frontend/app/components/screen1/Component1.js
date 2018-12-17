@@ -23,7 +23,7 @@ constructor(props){
 componentDidMount() { //Körs när allt är inladdat
     let self = this; //Kallar this för self för att lättare använda
 
-    fetch('http://192.168.0.122:3001/light/Str', {  //Urlen där vi vill skicka ifrån (Detta är datorns ipadress, hämtas via ipconfig i cmd, ip4)
+    fetch('http://iot.abbindustrigymnasium.se:3000/light/Str', {  //Urlen där vi vill skicka ifrån (Detta är datorns ipadress, hämtas via ipconfig i cmd, ip4)
     	method: 'GET'  //Säger att det är GET vi vill använda
 	  }).then((response) => response.json())  //Gör om resultatet till json
 
@@ -42,7 +42,7 @@ componentDidMount() { //Körs när allt är inladdat
 
 DeleteDataFromServer = () =>{ //Skapar en metod som tar värdena name och price så använder vi dem för att skicka till databasen
 	console.log("bla")
-    fetch('http://192.168.0.122:3001/light/', {  //Skickar värdena till databasen 
+    fetch('http://iot.abbindustrigymnasium.se:3000/light/', {  //Skickar värdena till databasen 
     	method: 'DELETE',	 //Post betyder skicka
 		headers: { // skickar med vilkoren 
 	'Accept': 'application/json', 
@@ -58,7 +58,7 @@ DeleteDataFromServer = () =>{ //Skapar en metod som tar värdena name och price 
 
 InsertDataToServer =() => {
 	console.log("äöäöl");
-	fetch('http://192.168.0.122:3001/light/',{ //Bestämmer vart det nya värdet hamnar.
+	fetch('http://iot.abbindustrigymnasium.se:3000/light/',{ //Bestämmer vart det nya värdet hamnar.
 		method: 'POST', //Bestämmer att ett nytt värde skapas.
 		headers: {
 			'Accept': 'application/json',
