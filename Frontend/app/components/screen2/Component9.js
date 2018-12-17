@@ -22,7 +22,7 @@ export default class Component9 extends React.Component {
 	DeleteDataFromServer = () =>{ //Skapar en metod som tar värdena name och price så använder vi dem för att skicka till databasen
 
 		console.log("bla")
-		fetch('iot.abbindustrigymnasium.se:3000/grupp2/', {  //Skickar värdena till databasen 
+		fetch('http://iot.abbindustrigymnasium.se:3000/grupp2', {  //Skickar värdena till databasen 
 			method: 'DELETE',	 //Post betyder skicka
 			headers: { // skickar med vilkoren 
 				'Accept': 'application/json', 

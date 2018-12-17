@@ -29,7 +29,7 @@ UpdateDataToServer = () =>{ //Skapar en metod som tar värdena name och price s�
 
   console.log(value);
   console.log(value2);
-   fetch('iot.abbindustrigymnasium.se:3000/grupp2/', {  //Skickar värdena till databasen 
+   fetch('http://iot.abbindustrigymnasium.se:3000/grupp2', {  //Skickar värdena till databasen 
    method: 'PATCH',	 //Post betyder skicka
    headers: { // skickar med vilkoren 
    'Accept': 'application/json', 
