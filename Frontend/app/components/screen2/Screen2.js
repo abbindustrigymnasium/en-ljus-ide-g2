@@ -83,8 +83,8 @@ export default class Screen2 extends React.Component {
             <View style={styles.container}>
 
                 <LinearGradient style={styles.screencontainer}
-                colors={['#FF8900', '#4E3F2D' ]}
-                                >
+                colors={['#FF8900', '#4E3F2D' ]}>
+                                
 
                     <View style={styles.screencontainerInner}>
                         <Component11
