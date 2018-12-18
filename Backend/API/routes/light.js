@@ -43,6 +43,45 @@ router.get('/', (req, res) => {     //getta värde från databas
     });
 });
 
+router.post('/:google_home', (req, res, next) => {  //post funktion för att kunna tända lampan
+
+    var deleteRows = function(){
+        return new Promise(function(resolve, reject){
+            const lightName = req.params.lightName;
+            con.query('DELETE FROM light',[lightName], function (error, results) {
+                console.log(error);
+                if (error)
+                    return reject(error);
+                else
+                    return resolve(results)
+            });
+        })
+    }
+
+    var Createdlight= function(){
+        return new Promise(function(resolve,reject){
+            con.query('INSERT INTO `light` (`lightName`, `StrCold`, `StrWarm`) VALUES ("lightName", 500, 500); ', function (error, results) {   //post i lightName "lightName" och 500 på både StrWarm och -Cold
+                if (error)
+                    return reject (error);
+                else
+                    return resolve(results)
+            });
+        })
+    }   
+
+    Createdlight().then( Thelight => {  //om man lyckades posta, ska det skicka ett meddelande
+        res.status(201).json({
+            message:"Success, new value!",
+            light: Thelight
+        })
+    }).then(deleteRows())
+        .catch(error => { //annars påminner det att blev nåt fel
+            res.status(500).json({
+            error: error
+        });    
+    });
+});
+
 router.post('/', (req, res, next) => {  //post funktion för att kunna tända lampan
     var Createdlight= function(){
         return new Promise(function(resolve,reject){
